@@ -1,1 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Responsive Layout with Contact Form & To-Do List</title>
+  <style>
+    /* Basic reset and body styling */
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background-color: #f0f8ff;
+      margin: 0;
+    }
+
+    /* Navigation styles with Flexbox */
+    nav {
+      display: flex;
+      background-color: #1e90ff;
+      padding: 10px;
+      justify-content: center;
+      gap: 40px;
+      color: white;
+      font-weight: bold;
+      flex-wrap: wrap;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-size: 18px;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    /* Grid container for sidebar and main content */
+    .container {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 20px;
+      padding: 20px 0;
+    }
+
+    /* Sidebar styling */
+    .sidebar {
+      background-color: #f0f8ff;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+      min-height: 300px;
+    }
+
+    /* Main content styling */
+    .main-content {
+      background-color: #e6f2ff;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    }
+
+    /* Contact Form styling */
+    form {
+      max-width: 400px;
+      margin: 0 auto 30px auto;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    form h2 {
+      margin-top: 0;
+      text-align: center;
+      color: #1e90ff;
+    }
+    label {
+      display: block;
+      margin-top: 10px;
+      font-weight: bold;
+      color: #333;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-sizing: border-box;
+      font-size: 14px;
+      font-family: inherit;
+    }
+    button[type="submit"] {
+      margin-top: 15px;
+      padding: 10px;
+      width: 100%;
+      background-color: #1e90ff;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s ease;
+    }
+    button[type="submit"]:hover {
+      background-color: #0066cc;
+    }
+
+    /* To-Do List Styling */
+    #todo-list {
+      list-style-type: none;
+      padding-left: 0;
+      margin-top: 15px;
+    }
+    #todo-list li {
+      background: white;
+      margin-bottom: 8px;
+      padding: 10px;
+      border-radius: 6px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      font-size: 16px;
+    }
+    #todo-list button.remove-btn {
+      background-color: #ff4d4d;
+      border: none;
+      color: white;
+      padding: 5px 10px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    #todo-list button.remove-btn:hover {
+      background-color: #e60000;
+    }
+    #task-input {
+      padding: 8px;
+      width: 70%;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      margin-right: 10px;
+      font-size: 16px;
+      font-family: inherit;
+    }
+    #add-btn {
+      padding: 8px 15px;
+      border-radius: 6px;
+      border: none;
+      background-color: #1e90ff;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    #add-btn:hover {
+      background-color: #0066cc;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .container {
+        grid-template-columns: 1fr;
+      }
+      nav {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+      }
+      #task-input {
+        width: 100%;
+        margin-bottom: 10px;
+        margin-right: 0;
+      }
+      #add-btn {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav>
+    <a href="#">Home</a>
+    <a href="#">Projects</a>
+    <a href="#">Contact</a>
+  </nav>
+
+  <!-- Main layout -->
+  <div class="container">
+    <div class="sidebar">
+      <h2>About Me</h2>
+      <p>This sidebar uses CSS Grid and Flexbox for layout and is responsive!</p>
+
+      <!-- Contact Form -->
+      <form id="contactForm" action="#">
+        <h2>Contact Us</h2>
+
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" placeholder="Your name" />
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" placeholder="Your email" />
+
+        <label for="message">Message:</label>
+        <textarea id="message" name="message" rows="4" placeholder="Your message"></textarea>
+
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+
+    <div class="main-content">
+      <h2>My To-Do List</h2>
+      <input type="text" id="task-input" placeholder="Add a new task..." />
+      <button id="add-btn">Add</button>
+
+      <ul id="todo-list">
+        <!-- Tasks will appear here -->
+      </ul>
+    </div>
+  </div>
+
+  <script>
+    // Contact Form Validation
+    const form = document.getElementById('contactForm');
+    form.addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      const name = form.name.value.trim();
+      const email = form.email.value.trim();
+      const message = form.message.value.trim();
+
+      if (!name) {
+        alert('Please enter your name.');
+        form.name.focus();
+        return;
+      }
+
+      if (!email) {
+        alert('Please enter your email.');
+        form.email.focus();
+        return;
+      }
+
+      const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+      if (!email.match(emailPattern)) {
+        alert('Please enter a valid email address.');
+        form.email.focus();
+        return;
+      }
+
+      if (!message) {
+        alert('Please enter your message.');
+        form.message.focus();
+        return;
+      }
+
+      alert('Form submitted successfully!');
+      form.reset();
+    });
+
+    // To-Do List JavaScript
+    const addBtn = document.getElementById('add-btn');
+    const taskInput = document.getElementById('task-input');
+    const todoList = document.getElementById('todo-list');
+
+    function addTask() {
+      const taskText = taskInput.value.trim();
+      if (taskText === "") {
+        alert("Please enter a task!");
+        return;
+      }
+
+      const li = document.createElement('li');
+      li.textContent = taskText;
+
+      const removeBtn = document.createElement('button');
+      removeBtn.textContent = "Remove";
+      removeBtn.classList.add('remove-btn');
+      removeBtn.onclick = () => {
+        todoList.removeChild(li);
+      };
+
+      li.appendChild(removeBtn);
+      todoList.appendChild(li);
+
+      taskInput.value = "";
+      taskInput.focus();
+    }
+
+    addBtn.addEventListener('click', addTask);
+
+    // Allow adding task on pressing Enter
+    taskInput.addEventListener('keypress', function(event) {
+      if (event.key === 'Enter') {
+        addTask();
+      }
+    });
+  </script>
+
+</body>
+</html>
 
