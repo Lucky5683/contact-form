@@ -1,0 +1,49 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f5f8ff;
+  padding: 20px;
+  color: #333;
+}
+
+h1 {
+  color: #0044cc;
+}
+
+.filters {
+  margin: 20px 0;
+}
+
+label {
+  font-weight: bold;
+  margin-right: 8px;
+}
+
+select {
+  margin-right: 20px;
+  padding: 5px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  background: white;
+  box-shadow: 0 0 8px rgba(0,0,0,0.1);
+}
+
+thead {
+  background-color: #0044cc;
+  color: white;
+}
+
+th, td {
+  padding: 10px;
+  border: 1px solid #ddd;
+  text-align: center;
+}
+
+img {
+  max-width: 80px;
+  height: auto;
+  border-radius: 4px;
+}
